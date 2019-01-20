@@ -1,0 +1,36 @@
+package com.example.pos.order;
+
+//import com.example.demo.item.Item;
+import org.springframework.data.annotation.Id;
+
+import java.util.List;
+
+public class Order {
+    @Id
+    public String id;
+
+    public String userId;
+    public String status;
+    public String createdDate;
+    public String completedDate;
+//    public List<Item> itemList;
+    public float shippingCost;
+    public float VAT;
+    public float subTotal;
+
+    public Order() {}
+
+    public Order(String userId, String status, String createdDate) {
+        this.userId = userId;
+        this.status = status;
+        this.createdDate = createdDate;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Order[id=%s, userID='%s', status='%s', createdDate='%s']",
+                id, userId, status, createdDate);
+    }
+}
+
