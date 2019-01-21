@@ -9,7 +9,7 @@ public class Order {
     @Id
     public String id;
 
-    public String userId;
+    public String orderNo;
     public String status;
     public String createdDate;
     public String completedDate;
@@ -20,8 +20,8 @@ public class Order {
 
     public Order() {}
 
-    public Order(String userId, String status, String createdDate) {
-        this.userId = userId;
+    public Order(String orderNo, String status, String createdDate) {
+        this.orderNo = orderNo;
         this.status = status;
         this.createdDate = createdDate;
     }
@@ -29,8 +29,8 @@ public class Order {
     @Override
     public String toString() {
         return String.format(
-                "Order[id=%s, userID='%s', status='%s', createdDate='%s']",
-                id, userId, status, createdDate);
+                "Order[id=%s, orderNo='%s', status='%s', createdDate='%s']",
+                id, orderNo, status, createdDate);
     }
 }
 
