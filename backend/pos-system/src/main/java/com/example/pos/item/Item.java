@@ -9,7 +9,6 @@ public class Item {
     public String itemName;
     public float quantity;
     public float unitPrice;
-    public float totalPrice;
 
     public Item() {
     }
@@ -23,7 +22,7 @@ public class Item {
     @Override
     public String toString() {
         return String.format(
-                "Item[id=%s, itemName='%s', quantity='%s', unitPrice='%s', totalPrice='%s']",
-                id, itemName, quantity, unitPrice, quantity * unitPrice);
+                "Item[id=%s, itemName='%s', quantity='%s', unitPrice='%s']",
+                id, itemName, quantity, unitPrice);
     }
 }

@@ -26,6 +26,12 @@ public class ItemController {
         return repository.save(newItem);
     }
 
+
+    @DeleteMapping("/items/{id}")
+    void deleteItem(@PathVariable String id) {
+        repository.deleteById(id);
+    }
+
     // Single item
 
     @GetMapping("/items/{id}")
