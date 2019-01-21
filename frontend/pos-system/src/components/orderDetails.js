@@ -36,14 +36,35 @@ class OrderDetails extends Component {
             )
     }
 
-    submit = () => {
+    removeItem(id){
+        let url = 'http://localhost:8080/items/'+id;
+
+        fetch(url, {
+            method: 'DELETE'
+        })
+            .then(function(response) {
+                    if (response.ok) {
+                        console.log('success!');
+                        window.location.reload();
+                    }
+                    else{
+                        console.log(response);
+                    }
+                }
+            );
+
+
+
+    }
+
+    submit = (id) => {
         confirmAlert({
             title: 'Remove item from the order',
             message: 'Are you sure to do this?',
             buttons: [
                 {
                     label: 'Yes',
-                    onClick: () => alert('Click Yes')
+                    onClick: () => this.removeItem(id)
                 },
                 {
                     label: 'No'
@@ -78,7 +99,7 @@ class OrderDetails extends Component {
                                 <td>{item.unitPrice}</td>
                                 <td>{item.quantity}</td>
                                 <td>{item.unitPrice * item.quantity}</td>
-                                <td><button className="btn btn-danger a-btn-slide-text" onClick={this.submit}>
+                                <td><button className="btn btn-danger a-btn-slide-text" onClick={() => this.submit(item.id)}>
                                     <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     <span><strong> Remove</strong></span>
                                 </button> </td>
