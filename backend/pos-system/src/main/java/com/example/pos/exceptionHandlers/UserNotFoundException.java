@@ -1,8 +1,8 @@
-package com.example.pos.user;
+package com.example.pos.exceptionHandlers;
 
 public class UserNotFoundException extends RuntimeException {
 
-    UserNotFoundException(String id) {
+    public UserNotFoundException(String id) {
         super("Could not find user " + id);
     }
 }

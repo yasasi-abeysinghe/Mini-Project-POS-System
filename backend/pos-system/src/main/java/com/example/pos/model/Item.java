@@ -1,4 +1,4 @@
-package com.example.pos.item;
+package com.example.pos.model;
 
 import org.springframework.data.annotation.Id;
 

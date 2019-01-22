@@ -1,5 +1,8 @@
-package com.example.pos.item;
+package com.example.pos.controllers;
 
+import com.example.pos.repository.ItemRepository;
+import com.example.pos.model.Item;
+import com.example.pos.exceptionHandlers.ItemNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
