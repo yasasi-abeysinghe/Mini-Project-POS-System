@@ -40,9 +40,15 @@ class OrderDetails extends Component {
     render() {
         const {error, isLoaded, items} = this.state;
         if (error) {
-            return <div>Error: {error.message}</div>;
+            return  <div className="alert alert-dismissible alert-danger">
+                        <button type="button" className="close" data-dismiss="alert">&times;</button>
+                        <strong>Oops!</strong> <b>Unable to load!</b> please try again.
+                    </div>;
         } else if (!isLoaded) {
-            return <div>Loading...</div>;
+            return  <div className="alert alert-dismissible alert-light">
+                        <button type="button" className="close" data-dismiss="alert">&times;</button>
+                        <strong>Loading...</strong>
+                    </div>;
         } else {
             return (
                 <div className="container item-list-container">
