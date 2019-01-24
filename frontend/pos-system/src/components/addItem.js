@@ -61,7 +61,8 @@ class AddItem extends Component {
             body: JSON.stringify({
                 "itemName": this.refs.itemName.value,
                 "quantity": this.refs.qty.value,
-                "unitPrice": this.refs.unitprice.value
+                "unitPrice": this.refs.unitprice.value,
+                "orderNo": this.props.additemorderno
             })
         })
             .then(function (response) {

@@ -81,7 +81,7 @@ class OrderDetails extends Component {
                                 <td><RemoveItem removeitemid={item.id}/></td>
                             </tr>
                         ))}
-                        <AddItem/>
+                        <AddItem additemorderno={this.props.orderNo}/>
                         </tbody>
                     </table>
 
