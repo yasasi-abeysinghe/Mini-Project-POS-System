@@ -36,10 +36,7 @@ class OrderList extends Component {
     }
 
     handleOrderSelectChange(e) {
-        e.preventDefault();
-        const orderNo = '1';
-        console.log(orderNo);
-        this.props.onSelectOrder(orderNo);
+        this.props.onSelectOrder(e);
     }
 
     render() {
@@ -63,7 +60,7 @@ class OrderList extends Component {
                         </thead>
                         <tbody>
                         {orders.map(order => (
-                            <tr align="center" onClick={this.handleOrderSelectChange}>
+                            <tr align="center" value={order.orderNo} onClick={() => this.handleOrderSelectChange(order.orderNo)}>
                                 <th scope="row">{order.orderNo}</th>
                                 <td>{order.createdDate}</td>
                                 <td>{order.completedDate}</td>
