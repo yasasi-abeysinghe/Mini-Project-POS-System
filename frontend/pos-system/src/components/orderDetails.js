@@ -14,7 +14,7 @@ class OrderDetails extends Component {
     }
 
     componentDidMount() {
-        let url = 'http://localhost:8080/items';
+        let url = 'http://localhost:8080/items?orderNo=' + this.props.orderNo;
 
         fetch(url, {
             method: 'GET'

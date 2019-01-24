@@ -9,6 +9,7 @@ class OrderList extends Component {
             isLoaded: false,
             orders: []
         };
+        this.handleOrderSelectChange = this.handleOrderSelectChange.bind(this);
     }
 
     componentDidMount() {
@@ -34,6 +35,13 @@ class OrderList extends Component {
             )
     }
 
+    handleOrderSelectChange(e) {
+        e.preventDefault();
+        const orderNo = '1';
+        console.log(orderNo);
+        this.props.onSelectOrder(orderNo);
+    }
+
     render() {
         const {error, isLoaded, orders} = this.state;
         if (error) {
@@ -43,6 +51,7 @@ class OrderList extends Component {
         } else {
             return (
                 <div className="container order-list-container">
+                    {/*<Link to="/orderDetails">Click me</Link>*/}
                     <table className="table table-hover">
                         <thead>
                         <tr className="table-active" align="center">
@@ -54,7 +63,7 @@ class OrderList extends Component {
                         </thead>
                         <tbody>
                         {orders.map(order => (
-                            <tr align="center" key={order.orderNo}>
+                            <tr align="center" onClick={this.handleOrderSelectChange}>
                                 <th scope="row">{order.orderNo}</th>
                                 <td>{order.createdDate}</td>
                                 <td>{order.completedDate}</td>
