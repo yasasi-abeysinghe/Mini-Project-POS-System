@@ -27,4 +27,35 @@ public class Item {
                 "Item[id=%s, itemName='%s', quantity='%s', unitPrice='%s', orderNo=%s]",
                 id, itemName, quantity, unitPrice, orderNo);
     }
+
+    public String getItemName() {
+        return this.itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public float getQuantity(){
+        return this.quantity;
+    }
+
+    public void setQuantity(float quantity){
+        this.quantity = quantity;
+    }
+    public float getUnitPrice(){
+        return this.unitPrice;
+    }
+
+    public void setUnitPrice(float unitPrice){
+        this.unitPrice = unitPrice;
+    }
+
+    public String getOrderNo(){
+        return this.orderNo;
+    }
+
+    public void setOrderNo(String orderNo){
+        this.orderNo = orderNo;
+    }
 }

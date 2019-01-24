@@ -19,17 +19,18 @@ public class Order {
 
     public Order() {}
 
-    public Order(String orderNo, String status, String createdDate) {
+    public Order(String orderNo, String status, String createdDate, float subTotal) {
         this.orderNo = orderNo;
         this.status = status;
         this.createdDate = createdDate;
+        this.subTotal = subTotal;
     }
 
     @Override
     public String toString() {
         return String.format(
-                "Order[id=%s, orderNo='%s', status='%s', createdDate='%s']",
-                id, orderNo, status, createdDate);
+                "Order[id=%s, orderNo='%s', status='%s', createdDate='%s', subTotal='%s]",
+                id, orderNo, status, createdDate, subTotal);
     }
 }
 

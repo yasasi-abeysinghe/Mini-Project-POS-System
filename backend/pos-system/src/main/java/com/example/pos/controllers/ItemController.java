@@ -55,4 +55,20 @@ public class ItemController {
 
         return repository.findByOrderNo(orderNo);
     }
+
+    @PutMapping("/items/{id}")
+    Item updateItem(@RequestBody Item newItem, @PathVariable String id) {
+
+        return repository.findById(id)
+                .map(item -> {
+                    item.setItemName(newItem.getItemName());
+                    item.setQuantity(newItem.getQuantity());
+                    item.setUnitPrice(newItem.getUnitPrice());
+                    item.setOrderNo(newItem.getOrderNo());
+                    return repository.save(item);
+                })
+                .orElseGet(() -> {
+                    return repository.save(newItem);
+                });
+    }
 }
