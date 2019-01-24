@@ -13,7 +13,6 @@ public class Order {
     public String status;
     public String createdDate;
     public String completedDate;
-//    public List<Item> itemList;
     public float shippingCost;
     public float VAT;
     public float subTotal;
