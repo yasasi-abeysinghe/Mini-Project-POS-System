@@ -68,7 +68,6 @@ class AddItem extends Component {
             .then(function (response) {
                     if (response.ok) {
                         console.log('success!');
-                        window.location.reload();
                     } else {
                         console.log(response);
                     }

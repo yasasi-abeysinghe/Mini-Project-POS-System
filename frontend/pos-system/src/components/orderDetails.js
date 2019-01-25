@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import AddItem from './addItem';
-import RemoveItem from './removeItem';
+import ItemRow from './itemRow';
 
 
 class OrderDetails extends Component {
@@ -13,7 +13,7 @@ class OrderDetails extends Component {
         };
     }
 
-    componentDidMount() {
+    refreshPage() {
         let url = 'http://localhost:8080/items?orderNo=' + this.props.orderNo;
 
         fetch(url, {
@@ -36,8 +36,8 @@ class OrderDetails extends Component {
             )
     }
 
-
     render() {
+        this.refreshPage();
         const {error, isLoaded, items} = this.state;
         if (error) {
             return  <div className="alert alert-dismissible alert-danger">
@@ -66,20 +66,7 @@ class OrderDetails extends Component {
                         </thead>
                         <tbody>
                         {items.map(item => (
-                            <tr align="center" key={item.id}>
-                                <td></td>
-                                <td>{item.itemName}</td>
-                                <td>{item.unitPrice}</td>
-                                <td>{item.quantity}</td>
-                                <td>{item.unitPrice * item.quantity}</td>
-                                <td>
-                                    <button className="btn btn-primary a-btn-slide-text">
-                                        <span className="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                        <span><strong>Edit</strong></span>
-                                    </button>
-                                </td>
-                                <td><RemoveItem removeitemid={item.id}/></td>
-                            </tr>
+                            <ItemRow itemrow={item}/>
                         ))}
                         <AddItem additemorderno={this.props.orderNo}/>
                         </tbody>
