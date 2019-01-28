@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin
+
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600,allowCredentials="true")
 @RestController
+@RequestMapping("/api/auth")
 public class OrderController {
 
     @Autowired

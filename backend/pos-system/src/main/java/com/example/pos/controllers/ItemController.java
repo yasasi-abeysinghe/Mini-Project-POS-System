@@ -10,8 +10,10 @@ import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
-@CrossOrigin
+
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600,allowCredentials="true")
 @RestController
+@RequestMapping("/api/auth")
 public class ItemController {
 
     @Autowired

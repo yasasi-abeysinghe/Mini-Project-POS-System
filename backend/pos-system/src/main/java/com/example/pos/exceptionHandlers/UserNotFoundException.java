@@ -2,7 +2,7 @@ package com.example.pos.exceptionHandlers;
 
 public class UserNotFoundException extends RuntimeException {
 
-    public UserNotFoundException(String id) {
-        super("Could not find user " + id);
+    public UserNotFoundException(String username) {
+        super("Could not find userService " + username);
     }
 }

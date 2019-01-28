@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-@CrossOrigin
+
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600,allowCredentials="true")
 @RestController
+@RequestMapping("/api/auth")
 public class UserController {
 
     @Autowired
