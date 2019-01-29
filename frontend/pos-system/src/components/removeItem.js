@@ -12,7 +12,7 @@ class RemoveItem extends Component {
 
     // Remove the selected item from the database
     removeItem(id) {
-        let url = 'http://localhost:8080/items/' + id;
+        let url = 'http://localhost:8080/api/auth/items/' + id;
 
         fetch(url, {
             method: 'DELETE'

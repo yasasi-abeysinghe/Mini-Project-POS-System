@@ -14,7 +14,7 @@ class OrderDetails extends Component {
     }
 
     refreshPage() {
-        let url = 'http://localhost:8080/items?orderNo=' + this.props.orderNo;
+        let url = 'http://localhost:8080/api/auth/items?orderNo=' + this.props.orderNo;
 
         fetch(url, {
             method: 'GET'
@@ -36,6 +36,10 @@ class OrderDetails extends Component {
             )
     }
 
+    goBack(){
+        window.location.reload();
+    }
+
     render() {
         this.refreshPage();
         const {error, isLoaded, items} = this.state;
@@ -52,6 +56,11 @@ class OrderDetails extends Component {
         } else {
             return (
                 <div className="container item-list-container">
+                    <span className="container btn-container">
+                        <button type="button" className="btn btn-primary" onClick={this.goBack}>Back</button>
+                        <span> </span>
+                        <button type="button" className="btn btn-primary">Logout</button>
+                    </span>
                     <table className="table table-hover">
                         <thead>
                             <tr className="table-active" align="center">

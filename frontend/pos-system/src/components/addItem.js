@@ -51,7 +51,7 @@ class AddItem extends Component {
 
     // add the item to the database when the save button is clicked
     addItem() {
-        let url = 'http://localhost:8080/items/';
+        let url = 'http://localhost:8080/api/auth/items/';
 
         fetch(url, {
             method: 'post',

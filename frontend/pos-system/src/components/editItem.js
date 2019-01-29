@@ -20,7 +20,7 @@ class EditItem extends Component {
 
 
     editItem(item) {
-        let url = 'http://localhost:8080/items/'+item.id;
+        let url = 'http://localhost:8080/api/auth/items/'+item.id;
 
         fetch(url, {
             method: 'put',

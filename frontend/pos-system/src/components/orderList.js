@@ -13,7 +13,7 @@ class OrderList extends Component {
     }
 
     componentDidMount() {
-        let url = 'http://localhost:8080/orders';
+        let url = 'http://localhost:8080/api/auth/orders';
 
         fetch(url, {
             method: 'GET'
@@ -48,7 +48,9 @@ class OrderList extends Component {
         } else {
             return (
                 <div className="container order-list-container">
-                    {/*<Link to="/orderDetails">Click me</Link>*/}
+                    <span className="container logout-container">
+                        <button type="button" className="btn btn-primary">Logout</button>
+                    </span>
                     <table className="table table-hover">
                         <thead>
                         <tr className="table-active" align="center">
