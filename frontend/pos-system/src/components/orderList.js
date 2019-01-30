@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Logout from './logout';
 
 
 class OrderList extends Component {
@@ -49,7 +50,7 @@ class OrderList extends Component {
             return (
                 <div className="container order-list-container">
                     <span className="container logout-container">
-                        <button type="button" className="btn btn-primary">Logout</button>
+                        <Logout/>
                     </span>
                     <table className="table table-hover">
                         <thead>

@@ -1,14 +1,22 @@
 import React from "react";
-import { BrowserRouter as Router, Route} from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 import Login from "./components/login";
 import Orders from "./components/orders";
+import {isAuthenticated} from "./Util/Auth/AuthTokenManager";
 
 const App = () => (
     <Router>
         <div>
             <Header />
             <Route path="/" exact component={Login} />
-            <Route path="/orders" component={Orders} />
+            <Route path="/orders" render={() => {
+                if (isAuthenticated()) {
+                    return <Orders />
+                }
+                else {
+                    return <Redirect to='/'/>
+                }
+            }}/>
         </div>
     </Router>
 );

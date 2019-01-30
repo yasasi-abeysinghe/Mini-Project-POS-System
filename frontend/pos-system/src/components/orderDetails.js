@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import AddItem from './addItem';
 import ItemRow from './itemRow';
+import Logout from './logout';
 
 
 class OrderDetails extends Component {
@@ -59,7 +60,7 @@ class OrderDetails extends Component {
                     <span className="container btn-container">
                         <button type="button" className="btn btn-primary" onClick={this.goBack}>Back</button>
                         <span> </span>
-                        <button type="button" className="btn btn-primary">Logout</button>
+                        <Logout/>
                     </span>
                     <table className="table table-hover">
                         <thead>

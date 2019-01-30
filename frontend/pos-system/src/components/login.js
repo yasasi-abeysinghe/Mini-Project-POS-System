@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {setAuthentication} from '../Util/Auth/AuthTokenManager';
+import {withRouter} from "react-router-dom";
 
 
 class Login extends Component {
 
-    getCredentials(e){
-        e.preventDefault();
+    async getCredentials(e){
+
         const username = this.refs.inputusername.value;
         const password = this.refs.inputpassword.value;
 
@@ -19,7 +20,7 @@ class Login extends Component {
             error:{}
         };
 
-        fetch(url, {
+       await  fetch(url, {
             headers: {
                 "Content-Type": "application/json",
                 "cache-control": "no-cache",
@@ -31,13 +32,13 @@ class Login extends Component {
         }).then(
                 (result) => {
             let auth = false;
+            console.log(result['status'])
             if(result['status']===200){
                 auth = true;
                 response['status'] =200;
+                setAuthentication(auth);
                 this.props.history.push('/orders');
-
             }
-            setAuthentication(auth);
 
         }).catch( function(error) {
             response['status'] = 280;
@@ -78,4 +79,4 @@ class Login extends Component {
 
 }
 
-export default Login;
+export default withRouter(Login);
