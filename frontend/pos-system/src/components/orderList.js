@@ -14,7 +14,7 @@ class OrderList extends Component {
     }
 
     componentDidMount() {
-        let url = 'http://localhost:8080/api/auth/orders';
+        let url = 'http://localhost:8080/api/auth/orders?status=open';
 
         fetch(url, {
             method: 'GET'

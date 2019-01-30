@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+
 
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600,allowCredentials="true")
 @RestController
@@ -38,5 +40,14 @@ public class OrderController {
 
         return repository.findById(id)
                 .orElseThrow(() -> new OrderNotFoundException(id));
+    }
+
+    // Get list of items with given orderNo
+
+    @RequestMapping(value="/orders", params = "status", method=GET)
+    @ResponseBody
+    public List<Order> ordersByOrderNo(@RequestParam("status")  String status) {
+
+        return repository.findByStatus(status);
     }
 }
