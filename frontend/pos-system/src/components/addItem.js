@@ -73,6 +73,11 @@ class AddItem extends Component {
                     }
                 }
             );
+        this.refs.itemName.value = "";
+        this.refs.qty.value = "0";
+        this.refs.unitprice.value = "0.00";
+        this.enableInput();
+
     }
 
 
@@ -111,7 +116,7 @@ class AddItem extends Component {
                 <td>
                     <span className={inputClass}>
                         <button type="button" className="btn btn-primary btn-save" onClick={() => this.addItem()}>
-                            <strong>Save</strong>
+                            <strong>Add</strong>
                         </button>
                     </span>
                 </td>
