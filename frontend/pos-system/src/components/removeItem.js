@@ -25,6 +25,46 @@ class RemoveItem extends Component {
                     }
                 }
             );
+
+        let get_order = 'http://localhost:8080/api/auth/orders?orderNo=' + this.props.removeitem.orderNo;
+        let order_id;
+
+        fetch(get_order, {
+            method: 'GET'
+        })
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    console.log(result);
+                    order_id = result.id;
+                    console.log(order_id);
+                    let update_order = 'http://localhost:8080/api/auth/orders/' + order_id;
+                    fetch(update_order, {
+                        method: 'put',
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            "orderNo": result.orderNo,
+                            "createdDate": result.createdDate,
+                            "completedDate": result.completedDate,
+                            "status": result.status,
+                            "subTotal": parseInt(result.subTotal) - (parseInt(parseInt(this.props.removeitem.quantity) * (parseInt(this.props.removeitem.unitPrice))))
+                        })
+                    })
+                        .then(function (response) {
+                                if (response.ok) {
+                                    console.log('update success!');
+                                } else {
+                                    console.log(response);
+                                }
+                            }
+                        );
+                },
+                (error) => {
+                    console.log(error);
+                }
+            )
     }
 
     //Confirm the remove action
@@ -48,7 +88,7 @@ class RemoveItem extends Component {
     render() {
         return (
             <button className="btn btn-danger a-btn-slide-text"
-                    onClick={() => this.confirmRemove(this.props.removeitemid)}>
+                    onClick={() => this.confirmRemove(this.props.removeitem.id)}>
                 <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 <span><strong> Remove</strong></span>
             </button>

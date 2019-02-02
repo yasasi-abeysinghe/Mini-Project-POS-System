@@ -49,7 +49,7 @@ class ItemRow extends Component {
                     </span>
                 </td>
                 <td><EditItem onEditEnable={this.enableQuantityEdit} edititem={item} newqty={this.state.newQty}/></td>
-                <td><RemoveItem removeitemid={item.id}/></td>
+                <td><RemoveItem removeitem={item}/></td>
             </tr>
         );
     }
