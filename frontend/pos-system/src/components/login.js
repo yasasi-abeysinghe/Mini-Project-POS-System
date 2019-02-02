@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {setAuthentication} from '../Util/Auth/AuthTokenManager';
 import {withRouter} from "react-router-dom";
+import {confirmAlert} from "react-confirm-alert";
 
 
 class Login extends Component {
@@ -47,6 +48,15 @@ class Login extends Component {
 
         if(response['status']===120){
             response['status'] = 401;
+            confirmAlert({
+                title: 'Invalid credentials!',
+                message: 'Please verify them and retry.',
+                buttons: [
+                    {
+                        label: 'OK'
+                    }
+                ]
+            })
         }
 
         console.log(response);
