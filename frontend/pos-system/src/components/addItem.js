@@ -73,6 +73,46 @@ class AddItem extends Component {
                     }
                 }
             );
+
+        let get_order = 'http://localhost:8080/api/auth/orders?orderNo=' + this.props.additemorderno;
+        let order_id;
+
+        fetch(get_order, {
+            method: 'GET'
+        })
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    console.log(result);
+                    order_id = result.id;
+                    console.log(order_id);
+                    let update_order = 'http://localhost:8080/api/auth/orders/' + order_id;
+                    fetch(update_order, {
+                        method: 'put',
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            "orderNo": result.orderNo,
+                            "createdDate": result.createdDate,
+                            "completedDate": result.completedDate,
+                            "status": result.status,
+                            "subTotal": parseInt(result.subTotal) + (parseInt(this.refs.totalprice.value))
+                        })
+                    })
+                        .then(function (response) {
+                                if (response.ok) {
+                                    console.log('update success!');
+                                } else {
+                                    console.log(response);
+                                }
+                            }
+                        );
+                },
+                (error) => {
+                    console.log(error);
+                }
+            )
         this.refs.itemName.value = "";
         this.refs.qty.value = "0";
         this.refs.unitprice.value = "0.00";
