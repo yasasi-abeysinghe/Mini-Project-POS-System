@@ -42,12 +42,39 @@ public class OrderController {
                 .orElseThrow(() -> new OrderNotFoundException(id));
     }
 
-    // Get list of items with given orderNo
+    // Get list of open orders
 
     @RequestMapping(value="/orders", params = "status", method=GET)
     @ResponseBody
-    public List<Order> ordersByOrderNo(@RequestParam("status")  String status) {
+    public List<Order> ordersByStatus(@RequestParam("status")  String status) {
 
         return repository.findByStatus(status);
     }
+
+    // Get order with given orderNo
+
+    @RequestMapping(value="/orders", params = "orderNo", method=GET)
+    @ResponseBody
+    public Order ordersByOrderNo(@RequestParam("orderNo")  String orderNo) {
+
+        return repository.findByOrderNo(orderNo);
+    }
+
+    @PutMapping("/orders/{id}")
+    Order updateOrder(@RequestBody Order newOrder, @PathVariable String id) {
+
+        return repository.findById(id)
+                .map(order -> {
+                    order.setOrderNo(newOrder.getOrderNo());
+                    order.setCreatedDate(newOrder.getCreatedDate());
+                    order.setCompletedDate(newOrder.getCompletedDate());
+                    order.setStatus(newOrder.getStatus());
+                    order.setSubTotal(newOrder.getSubTotal());
+                    return repository.save(order);
+                })
+                .orElseGet(() -> {
+                    return repository.save(newOrder);
+                });
+    }
+
 }
