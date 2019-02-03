@@ -18,6 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 import javax.servlet.http.Cookie;
 import java.util.HashSet;
@@ -68,5 +69,14 @@ public class ItemControllerTest {
         String itemsString = responseAction.andReturn().getResponse().getContentAsString();
         String responseString = ("[{" + itemsString.substring(itemsString.indexOf("\"itemName")));
         Assert.assertEquals(responseString,expectedResponse);
+    }
+
+
+    @Test
+    public void createItemTest() throws Exception {
+        final Cookie authCookie = new Cookie("AuthenticationCookie", this.cookie);
+        ResultActions responseAction = mvc.perform(post("/api/auth/items").cookie(authCookie));
+        String itemId = responseAction.andReturn().getResponse().getContentAsString();
+        Assert.assertNotNull(itemRepository.findById(itemId));
     }
 }
