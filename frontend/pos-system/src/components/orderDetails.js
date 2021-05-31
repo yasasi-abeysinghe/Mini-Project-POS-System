@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import { confirmAlert } from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
+import AddItem from './addItem';
+import ItemRow from './itemRow';
+import Logout from './logout';
 
 
 class OrderDetails extends Component {
@@ -13,8 +14,8 @@ class OrderDetails extends Component {
         };
     }
 
-    componentDidMount() {
-        let url = 'http://localhost:8080/items';
+    refreshPage() {
+        let url = 'http://localhost:8080/api/auth/items?orderNo=' + this.props.orderNo;
 
         fetch(url, {
             method: 'GET'
@@ -36,77 +37,51 @@ class OrderDetails extends Component {
             )
     }
 
-    removeItem(id){
-        let url = 'http://localhost:8080/items/'+id;
-
-        fetch(url, {
-            method: 'DELETE'
-        })
-            .then(function(response) {
-                    if (response.ok) {
-                        console.log('success!');
-                        window.location.reload();
-                    }
-                    else{
-                        console.log(response);
-                    }
-                }
-            );
-
-
-
+    goBack(){
+        window.location.reload();
     }
 
-    submit = (id) => {
-        confirmAlert({
-            title: 'Remove item from the order',
-            message: 'Are you sure to do this?',
-            buttons: [
-                {
-                    label: 'Yes',
-                    onClick: () => this.removeItem(id)
-                },
-                {
-                    label: 'No'
-                }
-            ]
-        })
-    };
-
     render() {
+        this.refreshPage();
         const {error, isLoaded, items} = this.state;
         if (error) {
-            return <div>Error: {error.message}</div>;
+            return  <div className="alert alert-dismissible alert-danger">
+                        <button type="button" className="close" data-dismiss="alert">&times;</button>
+                        <strong>Oops!</strong> <b>Unable to load!</b> please try again.
+                    </div>;
         } else if (!isLoaded) {
-            return <div>Loading...</div>;
+            return  <div className="alert alert-dismissible alert-light">
+                        <button type="button" className="close" data-dismiss="alert">&times;</button>
+                        <strong>Loading...</strong>
+                    </div>;
         } else {
             return (
                 <div className="container item-list-container">
+                    <span className="container btn-container">
+                        <button type="button" className="btn btn-primary" onClick={this.goBack}>Back</button>
+                        <span> </span>
+                        <Logout/>
+                    </span>
                     <table className="table table-hover">
                         <thead>
-                        <tr className="table-active" align="center">
-                            <th scope="col">Item Name</th>
-                            <th scope="col">Unit Price</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Total Price</th>
-                            <th scope="col" className="remove-col"> </th>
-                        </tr>
+                            <tr className="table-active" align="center">
+                                <th scope="col" className="add-col"></th>
+                                <th scope="col">Item Name</th>
+                                <th scope="col">Unit Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Total Price</th>
+                                <th scope="col" className="edit-col"></th>
+                                <th scope="col" className="remove-col"></th>
+                            </tr>
                         </thead>
                         <tbody>
                         {items.map(item => (
-                            <tr align="center" key={item.id}>
-                                <td>{item.itemName}</td>
-                                <td>{item.unitPrice}</td>
-                                <td>{item.quantity}</td>
-                                <td>{item.unitPrice * item.quantity}</td>
-                                <td><button className="btn btn-danger a-btn-slide-text" onClick={() => this.submit(item.id)}>
-                                    <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                    <span><strong> Remove</strong></span>
-                                </button> </td>
-                            </tr>
+                            <ItemRow itemrow={item}/>
                         ))}
+                        <AddItem additemorderno={this.props.orderNo}/>
                         </tbody>
                     </table>
+
                 </div>
 
             );

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Logout from './logout';
 
 
 class OrderList extends Component {
@@ -9,10 +10,11 @@ class OrderList extends Component {
             isLoaded: false,
             orders: []
         };
+        this.handleOrderSelectChange = this.handleOrderSelectChange.bind(this);
     }
 
     componentDidMount() {
-        let url = 'http://localhost:8080/orders';
+        let url = 'http://localhost:8080/api/auth/orders?status=open';
 
         fetch(url, {
             method: 'GET'
@@ -34,6 +36,10 @@ class OrderList extends Component {
             )
     }
 
+    handleOrderSelectChange(e) {
+        this.props.onSelectOrder(e);
+    }
+
     render() {
         const {error, isLoaded, orders} = this.state;
         if (error) {
@@ -43,6 +49,9 @@ class OrderList extends Component {
         } else {
             return (
                 <div className="container order-list-container">
+                    <span className="container logout-container">
+                        <Logout/>
+                    </span>
                     <table className="table table-hover">
                         <thead>
                         <tr className="table-active" align="center">
@@ -54,7 +63,7 @@ class OrderList extends Component {
                         </thead>
                         <tbody>
                         {orders.map(order => (
-                            <tr align="center" key={order.orderNo}>
+                            <tr align="center" value={order.orderNo} onClick={() => this.handleOrderSelectChange(order.orderNo)}>
                                 <th scope="row">{order.orderNo}</th>
                                 <td>{order.createdDate}</td>
                                 <td>{order.completedDate}</td>

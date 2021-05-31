@@ -1,15 +1,65 @@
 import React, {Component} from 'react';
+import {setAuthentication} from '../Util/Auth/AuthTokenManager';
+import {withRouter} from "react-router-dom";
+import {confirmAlert} from "react-confirm-alert";
 
 
 class Login extends Component {
 
-    getCredentials(e){
-        e.preventDefault();
+    async getCredentials(e){
+
         const username = this.refs.inputusername.value;
         const password = this.refs.inputpassword.value;
 
         console.log('Username: '+ username);
         console.log('Password: '+ password);
+
+        let url = "http://localhost:8080/api/auth/log_in";
+        let response = {
+            status : 120,
+            content:{},
+            error:{}
+        };
+
+       await  fetch(url, {
+            headers: {
+                "Content-Type": "application/json",
+                "cache-control": "no-cache",
+            },
+            credentials:"include",
+            method: 'post',
+            body: JSON.stringify({username: username, password: password })
+
+        }).then(
+                (result) => {
+            let auth = false;
+            console.log(result['status'])
+            if(result['status']===200){
+                auth = true;
+                response['status'] =200;
+                setAuthentication(auth);
+                this.props.history.push('/orders');
+            }
+
+        }).catch( function(error) {
+            response['status'] = 280;
+            console.log(error)
+        });
+
+        if(response['status']===120){
+            response['status'] = 401;
+            confirmAlert({
+                title: 'Invalid credentials!',
+                message: 'Please verify them and retry.',
+                buttons: [
+                    {
+                        label: 'OK'
+                    }
+                ]
+            })
+        }
+
+        console.log(response);
     }
 
     render() {
@@ -39,4 +89,4 @@ class Login extends Component {
 
 }
 
-export default Login;
+export default withRouter(Login);

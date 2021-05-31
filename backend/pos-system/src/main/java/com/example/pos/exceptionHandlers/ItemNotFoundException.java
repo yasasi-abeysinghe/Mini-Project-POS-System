@@ -1,8 +1,8 @@
-package com.example.pos.item;
+package com.example.pos.exceptionHandlers;
 
 public class ItemNotFoundException  extends RuntimeException {
 
-    ItemNotFoundException(String id) {
+    public ItemNotFoundException(String id) {
         super("Could not find the item " + id);
     }
 }

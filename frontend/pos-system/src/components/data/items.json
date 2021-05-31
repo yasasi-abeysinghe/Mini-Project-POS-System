@@ -1,0 +1,102 @@
+[
+  {
+    "code": "App9876181",
+    "name": "Appleheads",
+    "unitPrice": "40.00"
+  },
+  {
+    "code": "Atc6241481",
+    "name": "Atomic Fire Balls",
+    "unitPrice": "20.00"
+  },
+  {
+    "code": "Blo3052683",
+    "name": "Blow Pops",
+    "unitPrice": "60.00"
+  },
+  {
+    "code": "Bos5446834",
+    "name": "Boston Baked Beans",
+    "unitPrice": "70.00"
+  },
+  {
+    "code": "Bot6515123",
+    "name": "Bottle Caps",
+    "unitPrice": "50.00"
+  },
+  {
+    "code": "Bub9511146",
+    "name": "Bubble Gum Cigars",
+    "unitPrice": "80.00"
+  },
+  {
+    "code": "But0756237",
+    "name": "Butterscotch Disks",
+    "unitPrice": "90.00"
+  },
+  {
+    "code": "Can1874924",
+    "name": "Candy Button",
+    "unitPrice": "140.00"
+  },
+  {
+    "code": "Can6490049",
+    "name": "Candy Necklace",
+    "unitPrice": "120.00"
+  },
+  {
+    "code": "Cha6178799",
+    "name": "Charleston Chew",
+    "unitPrice": "95.00"
+  },
+  {
+    "code": "Cha5710934",
+    "name": "Charms Assorted Squares",
+    "unitPrice": "35.00"
+  },
+  {
+    "code": "Cha9139946",
+    "name": "Charms Sweet Pops",
+    "unitPrice": "160.00"
+  },
+  {
+    "code": "Cin4756449",
+    "name": "Cinnamon Disks",
+    "unitPrice": "240.00"
+  },
+  {
+    "code": "Bou0556610",
+    "name": "Bouble Lollies",
+    "unitPrice": "110.00"
+  },
+  {
+    "code": "Dub1252304",
+    "name": "Dubble Bubble Gum",
+    "unitPrice": "130.00"
+  },
+  {
+    "code": "Fli3447222",
+    "name": "Flipsticks",
+    "unitPrice": "40.00"
+  },
+  {
+    "code": "Fru6332526",
+    "name": "Fruit Stripe Gum",
+    "unitPrice": "60.00"
+  },
+  {
+    "code": "Gob5881159",
+    "name": "Gobstoppers",
+    "unitPrice": "40.00"
+  },
+  {
+    "code": "Hea8465970",
+    "name": "Heath",
+    "unitPrice": "100.00"
+  },
+  {
+    "code": "Hot5311003",
+    "name": "Hot Tamales",
+    "unitPrice": "55.00"
+  }
+]

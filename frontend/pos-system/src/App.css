@@ -43,3 +43,16 @@
     border: 1px solid transparent;
     border-radius: 4px
 }
+
+.btn.btn-primary.a-btn-slide-text.btn-add{
+    border-radius: 4px;
+    float: left;
+}
+
+.btn.btn-primary.btn-save{
+    width: 100%;
+}
+
+.container.logout-container{
+    margin-bottom: 10px;
+}

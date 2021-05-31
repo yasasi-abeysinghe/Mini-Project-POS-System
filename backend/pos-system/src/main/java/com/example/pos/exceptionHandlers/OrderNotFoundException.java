@@ -1,8 +1,8 @@
-package com.example.pos.order;
+package com.example.pos.exceptionHandlers;
 
 public class OrderNotFoundException extends RuntimeException {
 
-    OrderNotFoundException(String orderNo) {
+    public OrderNotFoundException(String orderNo) {
         super("Could not find the order " + orderNo);
     }
 }
